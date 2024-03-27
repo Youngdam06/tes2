@@ -1,0 +1,4 @@
+EMAIL : admin@tes2.email
+PASSSWORD : 123
+
+ROUTE USER : /home
