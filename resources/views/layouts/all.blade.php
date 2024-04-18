@@ -133,5 +133,16 @@
             });
         });
     });
+
+    @if (session()->has('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Terkonfirmasi',
+            text: '{{ session()->get('success') }}'
+        });
+    @endif
+</script>
+<script>
+    
 </script>
 </html>

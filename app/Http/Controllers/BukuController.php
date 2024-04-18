@@ -15,7 +15,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $buku = Buku::all();
+        $buku = Buku::orderBy('created_at', 'DESC')->get();
         return view('buku.index', compact('buku'));
     }
 
@@ -82,10 +82,10 @@ class BukuController extends Controller
                                 ->first();
 
         // Tentukan tipe status berdasarkan apakah buku sudah dipinjam
-        // $tipeStatus = ($peminjaman) ? 'pinjam' : 'kembali';
+        $tipeStatus = ($peminjaman) ? 'Dipinjam' : 'Dikembalikan';
 
         // Tampilkan view dan kirimkan variabel $tipeStatus
-        return view('buku.show', compact('buku', 'peminjaman'));
+        return view('buku.show', compact('buku', 'peminjaman', 'tipeStatus'));
     }
 
     /**

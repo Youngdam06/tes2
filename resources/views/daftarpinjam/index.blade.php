@@ -50,6 +50,7 @@
                                 <th class="align-middle text-center text-sm">Status</th>
                                 <th class="align-middle text-center text-sm" width="300px">Action</th>
                             </tr>
+                            {{-- ambil variabel dari daftarpinjam controller --}}
                             @foreach ($daftarpinjam as $peminjaman)
                             <tr>
                                 <td class="align-middle text-center text-sm">{{ $loop->iteration }}</td>

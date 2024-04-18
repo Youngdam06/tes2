@@ -25,6 +25,14 @@
                             <p class="card-text">Penulis: {{ $buku->penulis }}</p>
                             <p class="card-text">Penerbit: {{ $buku->penerbit }}</p>
                             <p class="card-text">Tahun Terbit: {{ $buku->tahunterbit }}</p>
+                            <p class="card-text">Kategori: 
+                                @foreach($buku->kategoris as $kategori)
+                                {{ $kategori->nama_kategori }}
+                                    @if(!$loop->last)
+                                        , {{-- Tambahkan koma jika bukan kategori terakhir --}}
+                                    @endif
+                                @endforeach
+                            </p>
                         </div>
                         @if($peminjaman)
                         <a href="/daftar-pinjam" class="btn btn-primary col-md-12">Kembalikan Buku</a>
@@ -35,13 +43,13 @@
                                 <button type="submit" class="btn btn-primary col-md-12">Pinjam Buku</button>
                             </form>
                         @endif
-                        <div class="mt-3">
+                        {{-- <div class="mt-3">
                             <form action="{{ route('koleksiStore') }}" method="POST">
                             <input type="hidden" name="userID" value="{{ auth()->id() }}">
                             <input type="hidden" name="bukuID" value="{{ $buku->id }}">
                             <button type="submit" class="btn btn-primary">Tambahkan ke koleksi</button>
                         </form>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

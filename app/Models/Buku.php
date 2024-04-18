@@ -35,6 +35,6 @@ class Buku extends Model
     public function kategoris(): BelongsToMany
     {
         return $this->belongsToMany(Kategori::class, 'kategori_relasi', 'bukuid', 'kategoriid');
-        return $this->belongsToMany(Kategori::class)->detach();
+        // return $this->belongsToMany(Kategori::class)->detach();
     }
 }

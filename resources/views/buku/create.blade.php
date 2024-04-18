@@ -2,6 +2,13 @@
 
 @section('konten')
 
+<style>
+    #preview-image {
+        max-width: 300px;
+        max-height: 300px;
+        margin-top: 10px;
+    }
+</style>
     <div class="content">
         <main class="main-content  mt-0">
             <div class="container my-auto">
@@ -33,7 +40,7 @@
                             @endif
 
                             <div class="card-body">
-                                <h3 class="text-center">Tambah Data</h3>
+                                <h3 class="text-center">Tambah Buku</h3>
                                 <form role="form" action="{{ route('kelolaBuku.store') }}" enctype="multipart/form-data" class="text-start"
                                     method="POST">
                                     @csrf
@@ -75,12 +82,15 @@
                                     </div>
                                     <label class="form-label text-dark">IMAGE</label>
                                     <div class="input-group input-group-outline my-3">
-                                        <input type="file" name="image" required>
+                                        <input type="file" name="image" id="image" required>
                                         @error('image')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                         @enderror
+                                    </div>
+                                    <div id="preview-container">
+                                        <img id="preview-image" src="#" alt="Preview" />
                                     </div>
                                     <button type="submit"
                                         class="btn bg-gradient-primary w-100 my-4 mb-2">Tambahkan</button>
@@ -109,5 +119,25 @@
     $(document).ready(function() {
         $('.select-multiple').select2();
     });
+</script>
+<script>
+    $(document).ready(function() {
+        // Ketika input file berubah
+        $("#image").change(function() {
+            previewImage(this);
+        });
+    });
+
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#preview-image').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // membaca data URL gambar
+        }
+    }
 </script>
 @endsection

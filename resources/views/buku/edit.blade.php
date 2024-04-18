@@ -1,6 +1,13 @@
 @extends('layouts.all')
 
 @section('konten')
+<style>
+    #preview-image {
+        max-width: 300px;
+        max-height: 300px;
+        margin-top: 10px;
+    }
+</style>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     <div class="content">
         <main class="main-content  mt-0">
@@ -93,13 +100,16 @@
                                     </div>
                                     <label class="form-label">IMAGE</label>
                                     <div class="input-group input-group-outline my-3">
-                                        <input type="file" name="image" value="{{ asset('images/'.$buku->image) }}"
+                                        <input type="file" name="image" id="image" value="{{ asset('images/'.$buku->image) }}"
                                             class="form-control">
                                         @error('image')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                    </div>
+                                    <div id="preview-container">
+                                        <img id="preview-image" src="#" alt="Preview" />
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Ubah
@@ -128,5 +138,25 @@
     $(document).ready(function() {
         $('.select-multiple').select2();
     });
+</script>
+<script>
+    $(document).ready(function() {
+        // Ketika input file berubah
+        $("#image").change(function() {
+            previewImage(this);
+        });
+    });
+
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#preview-image').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]); // membaca data URL gambar
+        }
+    }
 </script>
 @endsection

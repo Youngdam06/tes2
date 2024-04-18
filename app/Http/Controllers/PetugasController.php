@@ -13,7 +13,7 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        $petugas = User::where('level', 'petugas')->get();
+        $petugas = User::orderBy('created_at', 'DESC')->where('level', 'petugas')->get();
         return view('petugas.index', compact('petugas'));
     }
 

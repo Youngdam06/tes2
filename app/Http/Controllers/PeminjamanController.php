@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Koleksi;
 use App\Models\Peminjaman;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PeminjamanController extends Controller
 {
@@ -17,7 +19,7 @@ class PeminjamanController extends Controller
         
         // Mengambil data peminjaman berdasarkan ID pengguna
         // $peminjaman = Peminjaman::where('userid', $userID)->with('buku')->get();
-        $peminjaman = Peminjaman::with('user', 'buku')->orderBy('created_at', 'desc')->get();
+        $peminjaman = Peminjaman::with('user', 'buku')->orderBy('created_at', 'DESC')->get();
         return view('peminjaman.index', compact('peminjaman'));
     }
 
@@ -40,6 +42,8 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
+        $bukuID = $request->input('bukuID');
+        $user = Auth::user();
         // Validasi input
         $validated = $request->validate([
             'tanggalpinjam' => 'required',
@@ -57,6 +61,11 @@ class PeminjamanController extends Controller
             'userid' => $validated['userID'],
             'bukuid' => $validated['bukuID'],
             'status' => 'Dipinjam',
+        ]);
+
+        Koleksi::create([
+            'userid' => $user->id,
+            'bukuid' => $bukuID,
         ]);
 
         // Menyimpan peminjaman ke database

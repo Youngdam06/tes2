@@ -28,22 +28,12 @@
     <div class="col-md-4 col-lg-4">
         <div class="card ">
         <div class="card-header ">
-            <h5 class="card-title">Daftar Buku</h5>
+            <h5 class="card-title text-center">Daftar Buku</h5>
+            <hr>
         </div>
-        <div class="card-body ">
+        <div class="card-body mt">
             {{-- fungsi count nanti di sini --}}
-            <h4>{{ $buku }}</h4>
-        </div>
-        <div class="card-footer ">
-
-        </div>
-        </div>
-        <div class="card ">
-        <div class="card-header ">
-            <h5 class="card-title text-center">Buku Dipinjam/Kembali</h5>
-        </div>
-        <div class="card-body ">
-            <h4 class="text-center">{{ $peminjaman }}</h4>
+            <h4 class="text-center">{{ $buku }}</h4>
         </div>
         <div class="card-footer ">
 
@@ -53,13 +43,15 @@
     <div class="col-md-4">
         <div class="card ">
             <div class="card-header ">
-                <h5 class="card-title">Daftar Buku</h5>
+                <h5 class="card-title text-center">Buku Dipinjam/Kembali</h5>
+                <hr>
             </div>
             <div class="card-body ">
-                {{-- fungsi count nanti di sini --}}
+                <h4 class="text-center">{{ $peminjaman }}</h4>
             </div>
             <div class="card-footer ">
-
+    
+            </div>
             </div>
     </div>
     {{-- <div class="col-md-8">
@@ -90,7 +82,7 @@
     @if (session()->has('loginBerhasil'))
         Swal.fire({
             icon: 'success',
-            title: 'Login Berhasil',
+            title: 'Terkonfirmasi',
             text: '{{ session()->get('loginBerhasil') }}'
         });
     @endif
