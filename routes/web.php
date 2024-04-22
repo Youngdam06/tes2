@@ -4,18 +4,20 @@ use App\Models\Kategori;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BukuuController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\HistoriController;
+use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PeminjamannController;
 use App\Http\Controllers\DaftarpinjamController;
 use App\Http\Controllers\RegistertamuController;
 use App\Http\Controllers\KategoriRelasiController;
-use App\Http\Controllers\KoleksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,10 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/ulasan-buku-store', [UlasanController::class, 'store'])->name('ulasan.store');
     // peminjaman buku
     Route::post('/pinjam-buku-store', [PeminjamanController::class, 'store'])->name('pinjambuku.store');
-    Route::get('/pinjam-buku-create', [PeminjamanController::class, 'create'])->name('bukupinjam.create');
     Route::get('/daftar-pinjam', [DaftarpinjamController::class, 'index'])->name('daftarpinjam');
-    // histori buku
-    Route::get('/histori', [HistoriController::class, 'index'])->name('histori');
     // kembali buku
     Route::post('/daftarpinjam/{id}/kembali', [DaftarpinjamController::class, 'kembali'])->name('bukuKembali');
     // koleksi
@@ -61,13 +60,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/koleksi-store', [KoleksiController::class, 'store'])->name('koleksiStore');
 });
 
-Route::middleware(['auth', 'admin'])->group(function() {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('kelolaUlasan', UlasanController::class);
-    Route::resource('kelolaPinjam', PeminjamanController::class);
-    Route::resource('kelolaPetugas', PetugasController::class);
-    Route::resource('kelolaBuku', BukuController::class);
-    Route::resource('kelolaKategori', KategoriController::class);
-    Route::resource('relasiKategori', KategoriRelasiController::class);
+Route::middleware(['admin'])->group(function() {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
+    Route::resource('kelolaPinjam', PeminjamanController::class)->middleware('admin');
+    Route::resource('kelolaPetugas', PetugasController::class)->middleware('admin');
+    Route::resource('kelolaBuku', BukuController::class)->middleware('admin');
+    Route::resource('kelolaKategori', KategoriController::class)->middleware('admin');
+    Route::resource('relasiKategori', KategoriRelasiController::class)->middleware('admin');
+});
+Route::middleware(['petugas'])->group(function() {
+    Route::get('/petugasdash', [DashboardController::class, 'indexx'])->name('dashboardd')->middleware('petugas');
+    Route::resource('kelolaPinjamm', PeminjamannController::class)->middleware('petugas');
+    Route::resource('kelolaBukuu', BukuuController::class)->middleware('petugas');
+    Route::resource('kelolaKategorii', KategoriiController::class)->middleware('petugas');
+    Route::resource('relasiKategorii', KategoriRelasiiController::class)->middleware('petugas');
 });
 

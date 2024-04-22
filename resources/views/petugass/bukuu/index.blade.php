@@ -1,4 +1,4 @@
-@extends('layouts.all')
+@extends('layouts.allP')
 @section('konten')
 <div class="content">
     <h3>Daftar Buku</h3>
@@ -42,9 +42,9 @@
                         </td>
                         <td class="align-middle text-center text-sm" style="white-space: pre-wrap;">{{ $buku->tahunterbit }}</td>
                         <td>
-                            <form action="{{ route('kelolaBuku.destroy',$buku->id) }}" method="POST">
+                            <form action="{{ route('kelolaBukuu.destroy',$buku->id) }}" method="POST">
                             <div class="align-middle text-center text-sm">
-                                <a class="btn btn-info" href="{{ route('kelolaBuku.edit',$buku->id) }}">Edit</a>
+                                <a class="btn btn-info" href="{{ route('kelolaBukuu.edit',$buku->id) }}">Edit</a>
 
                                 @csrf
                                 @method('DELETE')
@@ -59,8 +59,8 @@
                 </tbody>
                 </table>
                 <div class="container">
-                    <a class="btn bg-primary btn-dark" href="{{ route('kelolaBuku.create') }}">Tambah Buku</a>
-                    <a class="btn bg-primary btn-dark" href="{{ route('relasiKategori.create') }}">Tambahkan Kategori</a>
+                    <a class="btn bg-primary btn-dark" href="{{ route('kelolaBukuu.create') }}">Tambah Buku</a>
+                    <a class="btn bg-primary btn-dark" href="{{ route('relasiKategorii.create') }}">Tambahkan Kategori</a>
                 </div>
             </div>
             </div>

@@ -21,18 +21,17 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
+        // dd($credentials);
         if(Auth::attempt($credentials)){
-            $user = Auth::user();
-            switch($user->level) {
-                case 'admin':
-                case 'petugas':
-                    return redirect('/');
-                    break;
-                case 'tamu':
-                    return redirect('/home');
-                    break;
-                default:
-                    return redirect()->back()->withErrors('Email atau password salah!');
+            $request->session()->regenerate();
+            if(Auth::user()->level == 'admin'){
+                return redirect('/');
+            }
+            else if(Auth::user()->level == 'petugas'){
+                return redirect('/petugasdash');
+            }
+            else if(Auth::user()->level == 'tamu'){
+                return redirect('/home');
             }
         }else{
             return redirect()->back()->withErrors('Email atau password salah!');

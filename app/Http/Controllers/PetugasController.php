@@ -45,6 +45,7 @@ class PetugasController extends Controller
         ]);
 
         $validated['level'] = 'petugas';
+        
         $validated['password'] = Hash::make($validated['password']);
 
         User::create($validated);

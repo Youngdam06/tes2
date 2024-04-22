@@ -1,10 +1,10 @@
-@extends('layouts.all')
+@extends('layouts.allP')
 
 @section('konten')
 
 <div class="content">
     <div class="row">
-    <h3>Dashboard Admin</h3>
+    <h3>Dashboard Petugas</h3>
     </div>
     {{-- <div class="row">
     <div class="col-md-12">

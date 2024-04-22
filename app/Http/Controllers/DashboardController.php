@@ -18,4 +18,12 @@ class DashboardController extends Controller
         $peminjaman = Peminjaman::count();
         return view('dashboard', compact('buku', 'rel_kategori', 'peminjaman'));
     }
+    
+    public function indexx()
+    {
+        $buku = Buku::count();
+        $rel_kategori = KategoriRelasi::count();
+        $peminjaman = Peminjaman::count();
+        return view('petugass/dashboard', compact('buku', 'rel_kategori', 'peminjaman'));
+    }
 }

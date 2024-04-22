@@ -16,10 +16,12 @@ class Petugas
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->level == 'petugas'){
+        // Periksa apakah pengguna masuk dan apakah level pengguna adalah petugas
+        if (Auth::check() && Auth::user()->level == 'petugas') {
             return $next($request);
         }
 
+        // Jika bukan petugas, kembalikan pengguna ke halaman sebelumnya
         return back();
     }
 }

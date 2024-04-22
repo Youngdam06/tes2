@@ -16,7 +16,7 @@ class Tamu
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->level() == 'tamu'){
+        if(Auth::check() && Auth::user()->level == 'tamu'){
             return $next($request);
         }
 
