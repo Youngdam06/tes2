@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\Buku;
 use App\Models\Koleksi;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
@@ -29,13 +30,7 @@ class PeminjamanController extends Controller
      */
     public function create(Request $request)
     {
-        // Mendapatkan nilai userID dan bukuID dari request
-        $userID = $request->input('userID');
-        $bukuID = $request->input('bukuID');
-
-        // Di sini Anda dapat melakukan operasi lain yang diperlukan, misalnya:
-        // Meneruskan nilai userID dan bukuID ke dalam view
-        return view('peminjaman.create', compact('userID', 'bukuID'));
+        // 
     }
 
     /**
@@ -45,6 +40,9 @@ class PeminjamanController extends Controller
     {
         $bukuID = $request->input('bukuID');
         $user = Auth::user();
+        $buku = Buku::findOrFail($request->input('bukuID'));
+
+        // if($user->peminjaman()->count())
     
         // Membuat peminjaman baru  
         Peminjaman::create([

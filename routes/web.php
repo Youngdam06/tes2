@@ -13,6 +13,7 @@ use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriiController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PeminjamannController;
 use App\Http\Controllers\DaftarpinjamController;

@@ -33,7 +33,63 @@
                                 @endif
                                 @endforeach
                             </p>
-                            <p class="card-text">Rating: {{ $ulasan }}</p>
+                            <h5 class="card-title text-center">Rating</h5>
+                            <div class="row">
+                                <div class=" mt-3 col-md-4 col-lg-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title text-center">Sangat Buruk</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-center"> {{$ulasan1}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" mt-3 col-md-4 col-lg-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title text-center">Buruk</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-center"> {{$ulasan2}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" mt-3 col-md-4 col-lg-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title text-center">Biasa</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-center"> {{$ulasan3}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" mt-3 col-md-4 col-lg-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title text-center">Bagus</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-center"> {{$ulasan4}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" mt-3 col-md-4 col-lg-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title text-center">Sangat Bagus</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-center"> {{$ulasan5}} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-md-4 col-lg-4">tes</div>
+                                <div class="col-md-4 col-lg-4">tes</div>
+                                <div class="col-md-4 col-lg-4">tes</div>
+                                <div class="col-md-4 col-lg-4">tes</div> --}}
+                            </div>
                         </div>
                         <form action="{{ route('pinjambuku.store') }}" method="POST">
                             @csrf

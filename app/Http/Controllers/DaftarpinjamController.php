@@ -39,13 +39,7 @@ class DaftarpinjamController extends Controller
             $peminjaman->status = 'Dikembalikan';
             $peminjaman->tanggalkembali = now(); // Mengatur tanggal pengembalian saat ini
             $peminjaman->save();
-
-            $koleksi = new Koleksi();
-            $koleksi->bukuid = $peminjaman->bukuid;
-            $koleksi->userid = auth()->id();
-            $koleksi->save();
-
-    
+            
             Session::flash('success-kembali', 'Buku berhasil dikembalikan.');
         } else {
             Session::flash('error', 'Buku ini tidak sedang dipinjam.');

@@ -82,13 +82,18 @@ class BukuController extends Controller
                                 ->where('userid', $userID)
                                 ->first();
 
-        $ulasan = Ulasan::where('bukuid', $id)->where('rating', 5)->count();
+        $ulasan1 = Ulasan::where('bukuid', $id)->where('rating', 1)->count();
+        $ulasan2 = Ulasan::where('bukuid', $id)->where('rating', 2)->count();
+        $ulasan3 = Ulasan::where('bukuid', $id)->where('rating', 3)->count();
+        $ulasan4 = Ulasan::where('bukuid', $id)->where('rating', 4)->count();
+        $ulasan5 = Ulasan::where('bukuid', $id)->where('rating', 5)->count();
 
         // Tentukan tipe status berdasarkan apakah buku sudah dipinjam
         $tipeStatus = ($peminjaman) ? 'Dipinjam' : 'Dikembalikan';
 
         // Tampilkan view dan kirimkan variabel $tipeStatus
-        return view('buku.show', compact('buku', 'peminjaman', 'tipeStatus', 'ulasan'));
+        return view('buku.show', compact('buku', 'peminjaman', 'tipeStatus', 
+        'ulasan1', 'ulasan2', 'ulasan3', 'ulasan4', 'ulasan5'));
     }
 
     /**

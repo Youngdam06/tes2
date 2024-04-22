@@ -12,8 +12,8 @@ class KategoriiController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all();
-        return view('petugass.kategori.index', compact('kategori'));
+        $kategori = Kategori::orderBy('created_at', 'DESC')->get();
+        return view('petugass.kategorii.index', compact('kategori'));
     }
 
     /**
@@ -21,7 +21,7 @@ class KategoriiController extends Controller
      */
     public function create()
     {
-        return view('petugass.kategori.create');
+        return view('petugass.kategorii.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class KategoriiController extends Controller
 
         Kategori::create($validated);
 
-        return redirect()->route('kelolaKategori.index')->with('Data Berhasil Ditambahkan!');
+        return redirect()->route('kelolaKategorii.index')->with('Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -52,7 +52,7 @@ class KategoriiController extends Controller
     public function edit(string $id)
     {
         $kategori = Kategori::firstWhere('id', $id);
-        return view('petugass.kategori.edit', compact('kategori'));
+        return view('petugass.kategorii.edit', compact('kategori'));
     }
 
     /**
@@ -64,8 +64,8 @@ class KategoriiController extends Controller
         $kategori->nama_kategori = $request->nama_kategori;
         $kategori->save();
 
-        return redirect()->route('kelolaKategori.index')
-            ->with('success', 'Data berhasil diedit!');
+        return redirect()->route('kelolaKategorii.index')
+            ->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -75,7 +75,7 @@ class KategoriiController extends Controller
     {
         $kategori = Kategori::find($id);
         $kategori->delete();
-        return redirect()->route('kelolaKategori.index')
+        return redirect()->route('kelolaKategorii.index')
             ->with('success', 'Data berhasil dihapus!');
     }
 }
