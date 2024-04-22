@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Peminjaman;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -81,11 +82,13 @@ class BukuController extends Controller
                                 ->where('userid', $userID)
                                 ->first();
 
+        $ulasan = Ulasan::where('bukuid', $id)->where('rating', 5)->count();
+
         // Tentukan tipe status berdasarkan apakah buku sudah dipinjam
         $tipeStatus = ($peminjaman) ? 'Dipinjam' : 'Dikembalikan';
 
         // Tampilkan view dan kirimkan variabel $tipeStatus
-        return view('buku.show', compact('buku', 'peminjaman', 'tipeStatus'));
+        return view('buku.show', compact('buku', 'peminjaman', 'tipeStatus', 'ulasan'));
     }
 
     /**

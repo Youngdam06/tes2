@@ -28,28 +28,18 @@
                             <p class="card-text">Kategori: 
                                 @foreach($buku->kategoris as $kategori)
                                 {{ $kategori->nama_kategori }}
-                                    @if(!$loop->last)
-                                        , {{-- Tambahkan koma jika bukan kategori terakhir --}}
-                                    @endif
+                                @if(!$loop->last)
+                                , {{-- Tambahkan koma jika bukan kategori terakhir --}}
+                                @endif
                                 @endforeach
                             </p>
+                            <p class="card-text">Rating: {{ $ulasan }}</p>
                         </div>
-                        @if($peminjaman)
-                        <a href="/daftar-pinjam" class="btn btn-primary col-md-12">Kembalikan Buku</a>
-                        @else
-                            <form action="{{ route('bukupinjam.create') }}" method="GET">
-                                <input type="hidden" name="userID" value="{{ auth()->id() }}">
-                                <input type="hidden" name="bukuID" value="{{ $buku->id }}">
-                                <button type="submit" class="btn btn-primary col-md-12">Pinjam Buku</button>
-                            </form>
-                        @endif
-                        {{-- <div class="mt-3">
-                            <form action="{{ route('koleksiStore') }}" method="POST">
-                            <input type="hidden" name="userID" value="{{ auth()->id() }}">
+                        <form action="{{ route('pinjambuku.store') }}" method="POST">
+                            @csrf
                             <input type="hidden" name="bukuID" value="{{ $buku->id }}">
-                            <button type="submit" class="btn btn-primary">Tambahkan ke koleksi</button>
+                            <button type="submit" class="btn btn-primary col-md-12">Pinjam Buku</button>
                         </form>
-                        </div> --}}
                     </div>
                 </div>
             </div>

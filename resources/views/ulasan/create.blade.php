@@ -40,24 +40,24 @@
                         <input type="hidden" name="userID" value="{{ $userID }}">
                         <!-- Menyertakan input field tersembunyi untuk menyimpan nilai bukuID -->
                         <input type="hidden" name="bukuID" value="{{ $bukuID }}">
-                        <div class="mb-3">
-                            <label class="form-label">RATING</label>
-                            <div class="input-group input-group-outline my-3">
-                                <select name="rating" class="form-select" aria-label="Default select example">
-                                    <option value="1">Sangat Buruk</option>
-                                    <option value="2">Buruk</option>
-                                    <option value="3">Biasa</option>
-                                    <option value="4">Bagus</option>
-                                    <option value="5">Sangat Bagus</option>
-                                </select>
-                                @error('rating')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">RATING</label>
+                                <div class="input-group input-group-outline my-3">
+                                    <select name="rating" class="form-select" aria-label="Default select example">
+                                        <option value="1">Sangat Buruk</option>
+                                        <option value="2">Buruk</option>
+                                        <option value="3">Biasa</option>
+                                        <option value="4">Bagus</option>
+                                        <option value="5">Sangat Bagus</option>
+                                    </select>
+                                    @error('rating')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>  
                             <div class="mb-3">
                                 <label for="ulasan" class="form-label">ULASAN</label>
                                 <textarea type="text" class="form-control" rows="4" name="ulasan" required></textarea>

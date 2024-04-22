@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Koleksi;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
@@ -44,32 +45,22 @@ class PeminjamanController extends Controller
     {
         $bukuID = $request->input('bukuID');
         $user = Auth::user();
-        // Validasi input
-        $validated = $request->validate([
-            'tanggalpinjam' => 'required',
-            'tanggalkembali' => 'required',
-            'userID' => 'required',
-            'bukuID' => 'required', 
-        ],[
-            'tanggalpinjam.required' => 'field tanggal pinjam harus diisi!',
-        ]);
     
-        // Membuat peminjaman baru
-        $peminjaman = new Peminjaman([
-            'tanggalpinjam' => $validated['tanggalpinjam'],
-            'tanggalkembali' => $validated['tanggalkembali'],
-            'userid' => $validated['userID'],
-            'bukuid' => $validated['bukuID'],
+        // Membuat peminjaman baru  
+        Peminjaman::create([
+            'tanggalpinjam' => Carbon::now(),
+            'tanggalkembali' => Carbon::now()->addDay(7),
+            'userid' => $user->id,
+            'bukuid' => $bukuID,
             'status' => 'Dipinjam',
         ]);
+
+        // Membuat koleksi baru
 
         Koleksi::create([
             'userid' => $user->id,
             'bukuid' => $bukuID,
         ]);
-
-        // Menyimpan peminjaman ke database
-        $peminjaman->save();
 
         return redirect('/home')->with('success-pinjam', 'Buku telah dipinjam');
     }
