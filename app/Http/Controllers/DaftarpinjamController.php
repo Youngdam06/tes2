@@ -40,11 +40,27 @@ class DaftarpinjamController extends Controller
             $peminjaman->tanggalkembali = now(); // Mengatur tanggal pengembalian saat ini
             $peminjaman->save();
             
-            Session::flash('success-kembali', 'Buku berhasil dikembalikan.');
+            Session::flash('success', 'Buku berhasil dikembalikan.');
         } else {
             Session::flash('error', 'Buku ini tidak sedang dipinjam.');
         }
 
-        return redirect()->route('daftarpinjam')->with('Buku yang kamu pinjam telah dikembalikan!');
+        
+
+        return redirect()->route('daftarpinjam')->with('success','Buku berhasil dikembalikan!');
+    }
+
+    public function autoKembali(Peminjaman $peminjaman)
+    {
+        // Periksa apakah tanggal kembali sudah lewat atau belum
+        if (Carbon::now()->greaterThanOrEqualTo($peminjaman->tanggalkembali)) {
+            $peminjaman->status = 'Dikembalikan';
+            $peminjaman->tanggalkembali = now(); // Mengatur tanggal pengembalian saat ini
+            $peminjaman->save();
+            Session::flash('success', 'Buku berhasil dikembalikan.');
+        } else {
+            Session::flash('error', 'Buku belum melewati tanggal pengembalian.');
+        }
     }
 }
+

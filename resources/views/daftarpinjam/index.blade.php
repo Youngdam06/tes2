@@ -119,5 +119,12 @@
             text: '{{ session()->get('success-ulasan') }}'
         });
     @endif
+    @if (session()->has('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Selesai!',
+            text: '{{ session()->get('success') }}'
+        });
+    @endif
 </script>
 @endsection

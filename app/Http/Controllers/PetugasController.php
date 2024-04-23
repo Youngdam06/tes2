@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class PetugasController extends Controller
@@ -13,7 +14,7 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        $petugas = User::orderBy('created_at', 'DESC')->where('level', 'petugas')->get();
+        $petugas = DB::select("CALL tampilPetugas()");
         return view('petugas.index', compact('petugas'));
     }
 
