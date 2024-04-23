@@ -36,6 +36,7 @@
                         <td class="align-middle text-center text-sm" style="white-space: pre-wrap;">{{ $buku->penulis }}</td>
                         <td class="align-middle text-center text-sm" style="white-space: pre-wrap;">{{ $buku->penerbit }}</td>
                         <td class="align-middle text-center text-sm" style="white-space: pre-wrap;">
+                            {{-- menampilkan kategori dari setiap buku yang ada --}}
                             @foreach ($buku->kategoris as $kategori)
                                 {{ $kategori->nama_kategori }},
                             @endforeach

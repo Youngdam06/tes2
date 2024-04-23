@@ -13,7 +13,7 @@ class KoleksiController extends Controller
         $userID = auth()->id();
         
         // Mengambil data peminjaman berdasarkan ID pengguna
-        $koleksi = Koleksi::where('userid', $userID)->with('buku')->get();
+        $koleksi = Koleksi::orderBy('created_at', 'DESC')->where('userid', $userID)->with('buku')->get();
         return view('koleksi.index', compact('koleksi'));
     }
 
