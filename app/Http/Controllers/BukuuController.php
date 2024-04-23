@@ -159,8 +159,18 @@ class BukuuController extends Controller
      */
     public function destroy(string $id)
     {
-        $buku = Buku::find($id);
-        $buku->delete();
-        return redirect()->route('kelolaBukuu.index');
+        try {
+            $buku = Buku::find($id);
+            
+            // Menghapus semua keterkaitan kategori
+            $buku->kategoris()->detach();
+    
+            // Menghapus buku
+            $buku->delete();
+            
+            return redirect()->route('kelolaBuku.index')->with('success', 'Buku berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->route('kelolaBuku.index')->with('error', 'Gagal menghapus buku');
+        }
     }
 }

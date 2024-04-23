@@ -48,7 +48,7 @@
                                     <label class="form-label">JUDUL</label>
                                     <div class="input-group input-group-outline my-3">
                                         <input type="text" name="judul"
-                                            value="{{ $buku->judul }}"class="form-control">
+                                            value="{{ $buku->judul }}"class="form-control" required>
                                         @error('judul')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -58,7 +58,7 @@
                                     <label class="form-label">PENULIS</label>
                                     <div class="input-group input-group-outline my-3">
                                         <input type="text" name="penulis" value="{{ $buku->penulis }}"
-                                            class="form-control">
+                                            class="form-control" required>
                                         @error('penulis')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -68,7 +68,7 @@
                                     <label class="form-label">PENERBIT</label>
                                     <div class="input-group input-group-outline my-3">
                                         <input type="text" name="penerbit" value="{{ $buku->penulis }}"
-                                            class="form-control">
+                                            class="form-control" required>
                                         @error('penerbit')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -78,7 +78,7 @@
                                     <label class="form-label">TAHUN TERBIT</label>
                                     <div class="input-group input-group-outline my-3">
                                         <input type="number" name="tahunterbit" value="{{ $buku->tahunterbit }}"
-                                            class="form-control">
+                                            class="form-control" required>
                                         @error('tahunterbit')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

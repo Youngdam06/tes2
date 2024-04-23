@@ -39,7 +39,7 @@
                                 <label class="form-label">USERNAME</label>
                                 <div class="input-group input-group-outline my-3">
                                     <input type="text" name="username"
-                                        value="{{ $petugas->username }}"class="form-control">
+                                        value="{{ $petugas->username }}"class="form-control" required>
                                     @error('username')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -49,7 +49,7 @@
                                 <label class="form-label">EMAIL</label>
                                 <div class="input-group input-group-outline my-3">
                                     <input type="email" name="email" value="{{ $petugas->email }}"
-                                        class="form-control">
+                                        class="form-control" required>
                                     @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -59,7 +59,7 @@
                                 <label class="form-label">NAMA LENGKAP</label>
                                 <div class="input-group input-group-outline my-3">
                                     <input type="text" name="namalengkap" value="{{ $petugas->namalengkap }}"
-                                        class="form-control">
+                                        class="form-control" required>
                                     @error('namalengkap')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -69,7 +69,7 @@
                                 <label class="form-label">ALAMAT</label>
                                 <div class="input-group input-group-outline my-3">
                                     <input type="text" name="alamat" value="{{ $petugas->alamat }}"
-                                        class="form-control">
+                                        class="form-control" required>
                                     @error('alamat')
                                         <div class="invalid-feedback">
                                             {{ $message }}

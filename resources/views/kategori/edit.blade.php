@@ -40,7 +40,7 @@
                                     <label class="form-label">NAMA KATEGORI</label>
                                     <div class="input-group input-group-outline my-3">
                                         <input type="text" name="nama_kategori"
-                                            value="{{ $kategori->nama_kategori }}"class="form-control">
+                                            value="{{ $kategori->nama_kategori }}"class="form-control" required>
                                         @error('kategori')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

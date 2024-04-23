@@ -38,7 +38,7 @@
                                     @csrf
                                     <label class="form-label text-dark">NAMA KATEGORI</label>
                                     <div class="input-group input-group-outline my-3">
-                                        <input type="text" name="nama_kategori" class="form-control">
+                                        <input type="text" name="nama_kategori" class="form-control" required>
                                         @error('nama_kategori')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

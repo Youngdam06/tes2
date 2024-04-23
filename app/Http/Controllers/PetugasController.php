@@ -97,6 +97,6 @@ class PetugasController extends Controller
     {
         $prakerin = User::find($id);
         $prakerin->delete();
-        return redirect()->route('kelolaPetugas.index');
+        return redirect()->route('kelolaPetugas.index')->with('success', 'Data Berhasil Dihapus');
     }
 }
