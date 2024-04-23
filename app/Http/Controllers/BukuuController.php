@@ -26,7 +26,7 @@ class BukuuController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('petugas.bukuu.create', compact('kategori'));
+        return view('petugass.bukuu.create', compact('kategori'));
     }
 
     /**

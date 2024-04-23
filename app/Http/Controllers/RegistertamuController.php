@@ -31,7 +31,7 @@ class RegistertamuController extends Controller
         User::create($validated);
 
         if($validated) {
-            return redirect()->route('login')->with('Berhasil Register!');
+            return redirect()->route('login')->with('success', 'Berhasil Register!');
         }else{
             return redirect()->route('login')->with('Gagal Register! Periksa kembali data anda!');
         }

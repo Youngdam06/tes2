@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\KategoriRelasi;
 use Illuminate\Database\Eloquent\Builder; 
 
-class KategoriRelasiController extends Controller
+class KategoriRelasiiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class KategoriRelasiController extends Controller
     public function index()
     {
         $rel_kategori = KategoriRelasi::all();
-        return view('buku_kategori.index', compact('rel_kategori'));
+        return view('petugass.buku_kategorii.index', compact('rel_kategori'));
     }
 
     /**
@@ -26,7 +26,7 @@ class KategoriRelasiController extends Controller
     {
         $kategori = Kategori::all();
         $buku = Buku::all();
-        return view('buku_kategori.create', compact('kategori', 'buku'));
+        return view('petugass.buku_kategorii.create', compact('kategori', 'buku'));
     }
 
     /**
@@ -40,8 +40,8 @@ class KategoriRelasiController extends Controller
         ]);
     
         $buku = Buku::findOrFail($request->bukuid);
-    
-        // Check if the book already has a category
+
+        // Periksa apakah buku sudah memiliki kategori
         if ($buku->kategoris()->exists()) {
             return redirect()->back()->withErrors(['kategoriid' => 'Buku ini sudah memiliki kategori!']);
         }
@@ -49,7 +49,7 @@ class KategoriRelasiController extends Controller
         // Simpan relasi antara buku dan kategori menggunakan sync
         $buku->kategoris()->sync($request->kategoriid);
     
-        return redirect()->route('kelolaBuku.index')->with('success', 'Kategori buku sudah ditambah!');
+        return redirect()->route('kelolaBukuu.index')->with('success', 'Kategori buku sudah ditambah!');
     }
 
     /**

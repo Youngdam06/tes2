@@ -78,18 +78,29 @@ class BukuController extends Controller
 
         // Periksa apakah buku sudah dipinjam oleh user tertentu
         $userID = auth()->id();
+        $user = auth()->user();
         $peminjaman = Peminjaman::where('bukuid', $id)
                                 ->where('userid', $userID)
+                                ->first(); 
+        $tipeStatus = 'Dikembalikan';
+
+        if($user){
+            $pinjamStatus = Peminjaman::where('bukuid', $id)
+                                ->where('userid', $user->id)
+                                ->whereIn('status', ['Dipinjam', 'Dikembalikan'])
+                                ->latest()
                                 ->first();
+    
+            if ($pinjamStatus && $pinjamStatus->status == 'Dipinjam') {
+                $tipeStatus = 'Dipinjam';
+            }
+        }
 
         $ulasan1 = Ulasan::where('bukuid', $id)->where('rating', 1)->count();
         $ulasan2 = Ulasan::where('bukuid', $id)->where('rating', 2)->count();
         $ulasan3 = Ulasan::where('bukuid', $id)->where('rating', 3)->count();
         $ulasan4 = Ulasan::where('bukuid', $id)->where('rating', 4)->count();
         $ulasan5 = Ulasan::where('bukuid', $id)->where('rating', 5)->count();
-
-        // Tentukan tipe status berdasarkan apakah buku sudah dipinjam
-        $tipeStatus = ($peminjaman) ? 'Dipinjam' : 'Dikembalikan';
 
         // Tampilkan view dan kirimkan variabel $tipeStatus
         return view('buku.show', compact('buku', 'peminjaman', 'tipeStatus', 

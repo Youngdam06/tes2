@@ -91,11 +91,15 @@
                                 <div class="col-md-4 col-lg-4">tes</div> --}}
                             </div>
                         </div>
+                        @if($tipeStatus === 'Dikembalikan')
                         <form action="{{ route('pinjambuku.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="bukuID" value="{{ $buku->id }}">
                             <button type="submit" class="btn btn-primary col-md-12">Pinjam Buku</button>
                         </form>
+                        @elseif($tipeStatus === 'Dipinjam')
+                        <a href="/daftar-pinjam" class="btn btn-primary col-md-12">Kembalikan</a>
+                        @endif
                     </div>
                 </div>
             </div>

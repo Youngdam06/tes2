@@ -19,6 +19,7 @@ use App\Http\Controllers\PeminjamannController;
 use App\Http\Controllers\DaftarpinjamController;
 use App\Http\Controllers\RegistertamuController;
 use App\Http\Controllers\KategoriRelasiController;
+use App\Http\Controllers\KategoriRelasiiController;
 
 /*
 |--------------------------------------------------------------------------
